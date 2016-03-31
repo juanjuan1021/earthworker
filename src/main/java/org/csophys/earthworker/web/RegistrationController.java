@@ -1,6 +1,6 @@
 package org.csophys.earthworker.web;
 
-import org.springframework.context.ApplicationContext;
+import org.csophys.earthworker.web.service.RegistrationService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,7 +15,7 @@ import javax.annotation.Resource;
 public class RegistrationController {
 
     @Resource
-    ApplicationContext applicationContext;
+    RegistrationService registrationService;
 
     @RequestMapping("")
     @ResponseBody
