@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.csophys.earthworker.web.dao.RegistrationDAO">
+
+    <insert id="insert" parameterType="org.csophys.earthworker.web.entity.Registration" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO Registration
+        (
+        AddTime,
+        weixinId,
+        payId,
+        totalAmount,
+        userAmount,
+        dealId,
+        dealName,
+        dealSession,
+        dealCity,
+        childrenName,
+        currentSchool,
+        englishName,
+        iDNumber,
+        birthDay,
+        sex,
+        nation,
+        img,
+        address,
+        interest,
+        purpose,
+        health,
+        height,
+        weight,
+        vision,
+        contactName,
+        appellation,
+        contactPhone,
+        secondContactName,
+        secondAppellation,
+        secondContactPhone
+        )
+        VALUES
+        (
+        now(),
+        #{weixinId},
+        #{payId},
+        #{totalAmount},
+        #{userAmount},
+        #{dealId},
+        #{dealName},
+        #{dealSession},
+        #{dealCity},
+        #{childrenName},
+        #{currentSchool},
+        #{englishName},
+        #{iDNumber},
+        #{birthDay},
+        #{sex},
+        #{nation},
+        #{img},
+        #{address},
+        #{interest},
+        #{purpose},
+        #{health},
+        #{height},
+        #{weight},
+        #{vision},
+        #{contactName},
+        #{appellation},
+        #{contactPhone},
+        #{secondContactName},
+        #{secondAppellation},
+        #{secondContactPhone}
+        );
+        <selectKey resultType="int" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <update id="updateById">
+        UPDATE  Registration
+        SET
+        weixinId = #{entity.weixinId},
+        payId = #{entity.payId},
+        totalAmount = #{entity.totalAmount},
+        userAmount = #{entity.userAmount},
+        dealId = #{entity.dealId},
+        dealName = #{entity.dealName},
+        dealSession = #{entity.dealSession},
+        dealCity = #{entity.dealCity},
+        childrenName = #{entity.childrenName},
+        currentSchool = #{entity.currentSchool},
+        englishName = #{entity.englishName},
+        iDNumber = #{entity.iDNumber},
+        birthDay = #{entity.birthDay},
+        sex = #{entity.sex},
+        nation = #{entity.nation},
+        img = #{entity.img},
+        address = #{entity.address},
+        interest = #{entity.interest},
+        purpose = #{entity.purpose},
+        health = #{entity.health},
+        height = #{entity.height},
+        weight = #{entity.weight},
+        vision = #{entity.vision},
+        contactName = #{entity.contactName},
+        appellation = #{entity.appellation},
+        contactPhone = #{entity.contactPhone},
+        secondContactName = #{entity.secondContactName},
+        secondAppellation = #{entity.secondAppellation},
+        secondContactPhone = #{entity.secondContactPhone}
+        WHERE Id = #{id};
+    </update>
+
+</mapper>
