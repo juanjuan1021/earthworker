@@ -1,12 +1,13 @@
 package org.csophys.earthworker.web.service;
 
-import org.csophys.earthworker.web.entity.Registration;
 import org.csophys.common.service.util.SpringBaseWithCustomizeRunnerTest;
+import org.csophys.earthworker.web.entity.Registration;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.BeanUtils;
 
 import javax.annotation.Resource;
+import java.util.Date;
 
 
 public class RegistrationServiceTest extends SpringBaseWithCustomizeRunnerTest {
@@ -51,6 +52,7 @@ public class RegistrationServiceTest extends SpringBaseWithCustomizeRunnerTest {
         int id = service.insert(entity);
         Registration entityToUpdate = new Registration();
         BeanUtils.copyProperties(entity, entityToUpdate);
+        entityToUpdate.setAddTime(new Date());
         //field to update
         service.updateById(id, entityToUpdate);
         Registration newRegistration = service.getById(id);

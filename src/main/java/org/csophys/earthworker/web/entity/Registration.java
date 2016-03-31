@@ -41,7 +41,6 @@ public class Registration extends Entity {
     private String secondAppellation;
     private String secondContactPhone;
 
-
     public static void main(String[] args) {
         DaoCodeGenerate.generateByJavaBeanWithService(Registration.class);
     }

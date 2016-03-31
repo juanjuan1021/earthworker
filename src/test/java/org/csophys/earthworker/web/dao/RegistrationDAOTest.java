@@ -1,11 +1,11 @@
 package org.csophys.earthworker.web.dao;
 import org.csophys.common.service.util.SpringBaseWithCustomizeRunnerTest;
 import org.csophys.earthworker.web.entity.Registration;
-import org.csophys.earthworker.web.dao.RegistrationDAO;
 import org.junit.Assert;
 import org.junit.Test;
 
 import javax.annotation.Resource;
+import java.util.Date;
 
 /**
 * Created by csophys on with template on 2016-3-31.
@@ -41,6 +41,7 @@ public class RegistrationDAOTest extends SpringBaseWithCustomizeRunnerTest {
     @Test
     public void update() {
         Registration e = new Registration();
+        e.setAddTime(new Date());
         //TODO set something
         e.setId(insertEntity(TEST_ID).getId());
         Assert.assertTrue(registrationDAO.updateById(e.getId(),e) > 0);
