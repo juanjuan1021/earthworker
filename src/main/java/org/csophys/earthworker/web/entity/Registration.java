@@ -2,7 +2,6 @@ package org.csophys.earthworker.web.entity;
 
 import lombok.Data;
 import org.csophys.common.service.entity.Entity;
-import org.csophys.common.service.util.DaoCodeGenerate;
 
 import java.util.Date;
 
@@ -40,8 +39,4 @@ public class Registration extends Entity {
     private String secondContactName;
     private String secondAppellation;
     private String secondContactPhone;
-
-    public static void main(String[] args) {
-        DaoCodeGenerate.generateByJavaBeanWithService(Registration.class);
-    }
 }
