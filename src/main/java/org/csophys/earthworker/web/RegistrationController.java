@@ -1,5 +1,8 @@
 package org.csophys.earthworker.web;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import org.csophys.common.service.util.HttpUtil;
 import org.csophys.earthworker.web.entity.Registration;
 import org.csophys.earthworker.web.service.RegistrationService;
 import org.springframework.stereotype.Controller;
@@ -10,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by csophys on 16/3/31.
@@ -53,5 +57,31 @@ public class RegistrationController {
         } else {
             return Constant.FAIL;
         }
+    }
+
+    @RequestMapping("newRegistration")
+    @ResponseBody
+    public String newRegistrationDemoPage(String code) throws Exception {
+        //1.获取网页授权acess_token Info
+        String access_tokenInfo = HttpUtil.get("https://api.weixin.qq.com/sns/oauth2/access_token?appid=" + Constant.APPID + "&secret=" + Constant.SECRET + "&code=" + code + "&grant_type=authorization_code");
+        Map<String, String> tokenMap = new Gson().fromJson(access_tokenInfo, new TypeToken<Map<String, String>>() {
+        }.getType());
+        String openId = tokenMap.get("openId");
+        return "用户唯一标识" + openId;
+    }
+
+    @RequestMapping("MyRegistration")
+    @ResponseBody
+    public String MyRegistrationDemoPage(String code) throws Exception {
+        //1.获取网页授权acess_token Info
+        String access_tokenInfo = HttpUtil.get("https://api.weixin.qq.com/sns/oauth2/access_token?appid=" + Constant.APPID + "&secret=" + Constant.SECRET + "&code=" + code + "&grant_type=authorization_code");
+        Map<String, String> tokenMap = new Gson().fromJson(access_tokenInfo, new TypeToken<Map<String, String>>() {
+        }.getType());
+        String openId = tokenMap.get("openId");
+        return "用户唯一标识" + openId;
+    }
+
+    public static void main(String[] args) throws Exception{
+        System.out.println(new RegistrationController().newRegistrationDemoPage("04146c03cbbcfae0fa9c9f4ed70459d8"));
     }
 }
