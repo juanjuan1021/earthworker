@@ -66,8 +66,8 @@ public class RegistrationController {
         String access_tokenInfo = HttpUtil.get("https://api.weixin.qq.com/sns/oauth2/access_token?appid=" + Constant.APPID + "&secret=" + Constant.SECRET + "&code=" + code + "&grant_type=authorization_code");
         Map<String, String> tokenMap = new Gson().fromJson(access_tokenInfo, new TypeToken<Map<String, String>>() {
         }.getType());
-        String openId = tokenMap.get("openId");
-        return "用户唯一标识" + openId;
+        String openId = tokenMap.get("openid");
+        return "user ID:" + openId;
     }
 
     @RequestMapping("MyRegistration")
@@ -77,11 +77,11 @@ public class RegistrationController {
         String access_tokenInfo = HttpUtil.get("https://api.weixin.qq.com/sns/oauth2/access_token?appid=" + Constant.APPID + "&secret=" + Constant.SECRET + "&code=" + code + "&grant_type=authorization_code");
         Map<String, String> tokenMap = new Gson().fromJson(access_tokenInfo, new TypeToken<Map<String, String>>() {
         }.getType());
-        String openId = tokenMap.get("openId");
-        return "用户唯一标识" + openId;
+        String openId = tokenMap.get("openid");
+        return "user ID:"+openId;
     }
 
     public static void main(String[] args) throws Exception{
-        System.out.println(new RegistrationController().newRegistrationDemoPage("04146c03cbbcfae0fa9c9f4ed70459d8"));
+        System.out.println(new RegistrationController().newRegistrationDemoPage("0011fa9a9984521bec24ae3c73ac394u"));
     }
 }
