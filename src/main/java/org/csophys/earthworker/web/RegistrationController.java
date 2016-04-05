@@ -60,14 +60,13 @@ public class RegistrationController {
     }
 
     @RequestMapping("newRegistration")
-    @ResponseBody
     public String newRegistrationDemoPage(String code) throws Exception {
         //1.获取网页授权acess_token Info
         String access_tokenInfo = HttpUtil.get("https://api.weixin.qq.com/sns/oauth2/access_token?appid=" + Constant.APPID + "&secret=" + Constant.SECRET + "&code=" + code + "&grant_type=authorization_code");
         Map<String, String> tokenMap = new Gson().fromJson(access_tokenInfo, new TypeToken<Map<String, String>>() {
         }.getType());
         String openId = tokenMap.get("openid");
-        return "user ID:" + openId;
+        return "newRegistration";
     }
 
     @RequestMapping("MyRegistration")
@@ -78,10 +77,10 @@ public class RegistrationController {
         Map<String, String> tokenMap = new Gson().fromJson(access_tokenInfo, new TypeToken<Map<String, String>>() {
         }.getType());
         String openId = tokenMap.get("openid");
-        return "user ID:"+openId;
+        return "user ID:" + openId;
     }
 
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         System.out.println(new RegistrationController().newRegistrationDemoPage("0011fa9a9984521bec24ae3c73ac394u"));
     }
 }
