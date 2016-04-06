@@ -1,5 +1,7 @@
 package com.kdt.api;
 
+import com.google.gson.Gson;
+import com.kdt.dto.CreateQrCodeResponse;
 import org.csophys.common.service.util.HttpUtil;
 
 import java.net.URLEncoder;
@@ -21,52 +23,12 @@ public class KdtApiClient {
     private static String appId = "32fb25eda87fedcded";
     private static String appSecret = "e6c1a1373d28b4e17686d18ffd1851de";
 
-    /*public KdtApiClient(String appId, String appSecret) throws Exception{
-        if ("".equals(appId) || "".equals(appSecret)){
-            throw new Exception("appId 和 appSecret 不能为空");
-        }
-        
-        this.appId = appId;
-        this.appSecret = appSecret;
-    }*/
-    
     public static String get(String method, HashMap<String,String> parames) throws Exception{
         String url = apiEntry + getParamStr(method, parames);
-/*
-
-        HttpClient client = new DefaultHttpClient();
-		HttpGet request = new HttpGet(url);
-		request.addHeader("User-Agent", DefaultUserAgent);
- 
-		HttpResponse response = client.execute(request);
-*/
         return HttpUtil.get(url);
     }
 
-    /*
-    public HttpResponse post(String method, HashMap<String, String> parames, List<String> filePaths, String fileKey) throws Exception{
-        String url = apiEntry + getParamStr(method, parames);
 
-        HttpClient client = new DefaultHttpClient();
-        HttpPost httppost = new HttpPost(url);
-        httppost.addHeader("User-Agent", DefaultUserAgent);
-
-        if(null != filePaths && filePaths.size() > 0 && null != fileKey && !"".equals(fileKey)){
-            MultipartEntity mpEntity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE);
-            for(int i = 0; i < filePaths.size(); i++){
-                File file = new File(filePaths.get(i));
-                ContentBody cbFile = new FileBody(file);
-                mpEntity.addPart(fileKey, cbFile);
-            }
-
-            httppost.setEntity(mpEntity);
-        }
-
-        System.out.println("executing request " + httppost.getRequestLine());
-        HttpResponse response = client.execute(httppost);
-
-        return response;*/
-    
     public static String getParamStr(String method, HashMap<String, String> parames){
         String str = "";
         try {
@@ -126,6 +88,24 @@ public class KdtApiClient {
         return parames;
     }
 
+    public static CreateQrCodeResponse getCreateQrCodeResponse(String dealName, String price) {
+        //创建有赞收款二维码
+        String method = "kdt.pay.qrcode.createQrCode";
+        HashMap<String, String> params = new HashMap<String, String>();
+        params.put("qr_name", dealName);
+        params.put("qr_price", price);
+        params.put("qr_type", "QR_TYPE_DYNAMIC");
+        params.put("qr_source", "OUTSIDE");
+        String response = null;
+        try {
+            response = KdtApiClient.get(method, params);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return new Gson().fromJson(response, CreateQrCodeResponse.class);
+    }
+
     public static void main(String[] args) {
 
         //获取最近的订单列表
@@ -143,11 +123,14 @@ public class KdtApiClient {
         params.put("qr_source","OUTSIDE");
 
 //        params.put("num_iid", "2651514");
+        String response = null;
         try {
-            String s = KdtApiClient.get(method, params);
-            System.out.println(s);
+             response= KdtApiClient.get(method, params);
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        CreateQrCodeResponse createQrCodeResponse = new Gson().fromJson(response, CreateQrCodeResponse.class);
+        System.out.println(createQrCodeResponse);
     }
 }

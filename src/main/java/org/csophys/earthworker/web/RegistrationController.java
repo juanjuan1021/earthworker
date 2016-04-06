@@ -2,23 +2,27 @@ package org.csophys.earthworker.web;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.kdt.api.KdtApiClient;
+import com.kdt.dto.CreateQrCodeResponse;
 import org.csophys.common.service.util.HttpUtil;
 import org.csophys.earthworker.web.entity.Registration;
+import org.csophys.earthworker.web.enums.PayStatusEnum;
 import org.csophys.earthworker.web.service.RegistrationService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.ModelMap;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * Created by csophys on 16/3/31.
  */
 @Controller
+@SessionAttributes({"openId"})
 @RequestMapping("/Registration")
 public class RegistrationController {
 
@@ -26,15 +30,23 @@ public class RegistrationController {
     RegistrationService registrationService;
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    @ResponseBody
-    public String getRegistration(Registration registration) {
+    public String addRegistration(Registration registration, @ModelAttribute("openId") String openId) {
+        registration.setPayStatus(PayStatusEnum.INIT);
+        registration.setWeixinId(openId);
         int result = registrationService.insert(registration);
         if (result > 0) {
-            return result + "";
+            String dealName = registration.getDealName();
+            String price = registration.getTotalAmount().toString();
+            CreateQrCodeResponse createQrCodeResponse = KdtApiClient.getCreateQrCodeResponse(dealName, price);
+            registration.setPayId(createQrCodeResponse.getResponse().getQr_id());
+            registration.setPayStatus(PayStatusEnum.WAIT_PAINING);
+            registrationService.updateById(result, registration);
+            return "redirect:" + createQrCodeResponse.getResponse().getQr_url();
         } else {
             return Constant.FAIL;
         }
     }
+
 
     @RequestMapping(value = "/{id}")
     @ResponseBody
@@ -60,27 +72,28 @@ public class RegistrationController {
     }
 
     @RequestMapping("newRegistration")
-    public String newRegistrationDemoPage(String code) throws Exception {
+    public String newRegistration(String code, ModelMap modelMap) throws Exception {
         //1.获取网页授权acess_token Info
         String access_tokenInfo = HttpUtil.get("https://api.weixin.qq.com/sns/oauth2/access_token?appid=" + Constant.APPID + "&secret=" + Constant.SECRET + "&code=" + code + "&grant_type=authorization_code");
         Map<String, String> tokenMap = new Gson().fromJson(access_tokenInfo, new TypeToken<Map<String, String>>() {
         }.getType());
         String openId = tokenMap.get("openid");
+        if (StringUtils.isEmpty(openId)) {
+            openId = UUID.randomUUID().toString();
+        }
+        modelMap.addAttribute("openId", openId);
         return "newRegistration";
     }
 
-    @RequestMapping("MyRegistration")
-    @ResponseBody
-    public String MyRegistrationDemoPage(String code) throws Exception {
+    @RequestMapping("myRegistration")
+    public String myRegistration(String code, ModelMap modelMap) throws Exception {
         //1.获取网页授权acess_token Info
         String access_tokenInfo = HttpUtil.get("https://api.weixin.qq.com/sns/oauth2/access_token?appid=" + Constant.APPID + "&secret=" + Constant.SECRET + "&code=" + code + "&grant_type=authorization_code");
         Map<String, String> tokenMap = new Gson().fromJson(access_tokenInfo, new TypeToken<Map<String, String>>() {
         }.getType());
         String openId = tokenMap.get("openid");
-        return "user ID:" + openId;
+        modelMap.addAttribute("registrationList", registrationService.getByField("weixinId", openId));
+        return "myRegistration";
     }
 
-    public static void main(String[] args) throws Exception {
-        System.out.println(new RegistrationController().newRegistrationDemoPage("0011fa9a9984521bec24ae3c73ac394u"));
-    }
 }
