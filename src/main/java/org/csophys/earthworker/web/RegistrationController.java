@@ -39,7 +39,7 @@ public class RegistrationController {
             String price = String.valueOf(registration.getTotalAmount() * 100);
             CreateQrCodeResponse createQrCodeResponse = KdtApiClient.getCreateQrCodeResponse(dealName, price);
             registration.setPayId(createQrCodeResponse.getResponse().getQr_id());
-            registration.setPayStatus(PayStatusEnum.WAIT_PAINING);
+            registration.setPayStatus(PayStatusEnum.WAIT_RECEIVED);
             registrationService.updateById(result, registration);
             return "redirect:" + createQrCodeResponse.getResponse().getQr_url();
         } else {
@@ -92,7 +92,9 @@ public class RegistrationController {
         Map<String, String> tokenMap = new Gson().fromJson(access_tokenInfo, new TypeToken<Map<String, String>>() {
         }.getType());
         String openId = tokenMap.get("openid");
-        modelMap.addAttribute("registrationList", registrationService.getByField("weixinId", openId));
+        List<Registration> registrationList = registrationService.getByField("weixinId", openId);
+        //TODO:更新报名的支付状态
+        modelMap.addAttribute("registrationList", registrationList);
         return "myRegistration";
     }
 
