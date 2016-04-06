@@ -36,7 +36,7 @@ public class RegistrationController {
         int result = registrationService.insert(registration);
         if (result > 0) {
             String dealName = registration.getDealName();
-            String price = registration.getTotalAmount().toString();
+            String price = String.valueOf(registration.getTotalAmount() * 100);
             CreateQrCodeResponse createQrCodeResponse = KdtApiClient.getCreateQrCodeResponse(dealName, price);
             registration.setPayId(createQrCodeResponse.getResponse().getQr_id());
             registration.setPayStatus(PayStatusEnum.WAIT_PAINING);

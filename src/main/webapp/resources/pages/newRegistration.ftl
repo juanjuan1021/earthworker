@@ -23,7 +23,7 @@
 <form action="/Registration/add" method="post" role="form">
     <div class="form-group">
         <label for="dealName">课程名称</label>
-        <input type="text" class="form-control" name="dealName" id="dealName" value="马术套餐" readonly="true">
+        <input type="text" class="form-control" name="dealName" id="dealName" value="horse course" readonly="true">
     </div>
 
     <div class="form-group">
