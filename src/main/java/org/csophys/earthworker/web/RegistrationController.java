@@ -7,6 +7,7 @@ import com.kdt.dto.CreateQrCodeResponse;
 import org.csophys.common.service.util.HttpUtil;
 import org.csophys.earthworker.web.entity.Registration;
 import org.csophys.earthworker.web.enums.PayStatusEnum;
+import org.csophys.earthworker.web.service.PayStatusCheckTask;
 import org.csophys.earthworker.web.service.RegistrationService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -36,11 +37,13 @@ public class RegistrationController {
         int result = registrationService.insert(registration);
         if (result > 0) {
             String dealName = registration.getDealName();
+            //TODO:价格通过有赞接口获取
             String price = String.valueOf(registration.getTotalAmount() * 100);
             CreateQrCodeResponse createQrCodeResponse = KdtApiClient.getCreateQrCodeResponse(dealName, price);
             registration.setPayId(createQrCodeResponse.getResponse().getQr_id());
             registration.setPayStatus(PayStatusEnum.WAIT_RECEIVED);
             registrationService.updateById(result, registration);
+            PayStatusCheckTask.getWaitPayOrders().put(registration.getPayId(), result);
             return "redirect:" + createQrCodeResponse.getResponse().getQr_url();
         } else {
             return Constant.FAIL;

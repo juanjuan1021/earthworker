@@ -2,6 +2,7 @@ package com.kdt.api;
 
 import com.google.gson.Gson;
 import com.kdt.dto.CreateQrCodeResponse;
+import com.kdt.dto.PayOrderResponse;
 import org.csophys.common.service.util.HttpUtil;
 
 import java.net.URLEncoder;
@@ -10,26 +11,26 @@ import java.util.Date;
 import java.util.HashMap;
 
 public class KdtApiClient {
-	private static final String Version = "1.0";
+    private static final String Version = "1.0";
 
     private static final String apiEntry = "https://open.koudaitong.com/api/entry?";
 
     private static final String format = "json";
 
     private static final String signMethod = "md5";
-    
+
     private static final String DefaultUserAgent = "KdtApiSdk Client v0.1";
 
     private static String appId = "32fb25eda87fedcded";
     private static String appSecret = "e6c1a1373d28b4e17686d18ffd1851de";
 
-    public static String get(String method, HashMap<String,String> parames) throws Exception{
+    public static String get(String method, HashMap<String, String> parames) throws Exception {
         String url = apiEntry + getParamStr(method, parames);
         return HttpUtil.get(url);
     }
 
 
-    public static String getParamStr(String method, HashMap<String, String> parames){
+    public static String getParamStr(String method, HashMap<String, String> parames) {
         String str = "";
         try {
             str = URLEncoder.encode(buildParamStr(buildCompleteParams(method, parames)), "UTF-8")
@@ -44,17 +45,16 @@ public class KdtApiClient {
 
         return str;
     }
-    
-    private static String buildParamStr(HashMap<String, String> param){
+
+    private static String buildParamStr(HashMap<String, String> param) {
         String paramStr = "";
         Object[] keyArray = param.keySet().toArray();
-        for(int i = 0; i < keyArray.length; i++){
-            String key = (String)keyArray[i];
+        for (int i = 0; i < keyArray.length; i++) {
+            String key = (String) keyArray[i];
 
-            if(0 == i){
+            if (0 == i) {
                 paramStr += (key + "=" + param.get(key));
-            }
-            else{
+            } else {
                 paramStr += ("&" + key + "=" + param.get(key));
             }
         }
@@ -63,22 +63,22 @@ public class KdtApiClient {
     }
 
 
-    private static HashMap<String, String> buildCompleteParams(String method, HashMap<String, String> parames) throws Exception{
+    private static HashMap<String, String> buildCompleteParams(String method, HashMap<String, String> parames) throws Exception {
         HashMap<String, String> commonParams = getCommonParams(method);
         for (String key : parames.keySet()) {
-			if(commonParams.containsKey(key)){
-				throw new Exception("参数名冲突");
-			}
-			
-			commonParams.put(key, parames.get(key));
-		}
-        
+            if (commonParams.containsKey(key)) {
+                throw new Exception("参数名冲突");
+            }
+
+            commonParams.put(key, parames.get(key));
+        }
+
         commonParams.put(KdtApiProtocol.SIGN_KEY, KdtApiProtocol.sign(appSecret, commonParams));
         return commonParams;
     }
 
-    private static HashMap<String, String> getCommonParams(String method){
-       HashMap<String, String> parames = new HashMap<String, String>();
+    private static HashMap<String, String> getCommonParams(String method) {
+        HashMap<String, String> parames = new HashMap<String, String>();
         parames.put(KdtApiProtocol.APP_ID_KEY, appId);
         parames.put(KdtApiProtocol.METHOD_KEY, method);
         parames.put(KdtApiProtocol.TIMESTAMP_KEY, new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
@@ -106,31 +106,28 @@ public class KdtApiClient {
         return new Gson().fromJson(response, CreateQrCodeResponse.class);
     }
 
-    public static void main(String[] args) {
 
-        //获取最近的订单列表
-/*
+    public static PayOrderResponse getTradeReceivedOrderList() {
         String method = "kdt.trades.qr.get";
         HashMap<String, String> params = new HashMap<String, String>();
-*/
+        params.put("status", "TRADE_RECEIVED");
 
-        //创建一个二维码
-        String method = "kdt.pay.qrcode.createQrCode";
-        HashMap<String, String> params = new HashMap<String, String>();
-        params.put("qr_name","划水");
-        params.put("qr_price","0.01");
-        params.put("qr_type","QR_TYPE_DYNAMIC");
-        params.put("qr_source","OUTSIDE");
-
-//        params.put("num_iid", "2651514");
+        //Date date = new Date(new Date().getTime() - 30 * 60 * 1000);
+        Date date = new Date(new Date().getTime() - 24*2*30 * 60 * 1000);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        params.put("start_created", simpleDateFormat.format(date));
         String response = null;
         try {
-             response= KdtApiClient.get(method, params);
+            response = KdtApiClient.get(method, params);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        CreateQrCodeResponse createQrCodeResponse = new Gson().fromJson(response, CreateQrCodeResponse.class);
-        System.out.println(createQrCodeResponse);
+        PayOrderResponse payOrderResponse = new Gson().fromJson(response, PayOrderResponse.class);
+        return payOrderResponse;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(KdtApiClient.getTradeReceivedOrderList());
     }
 }

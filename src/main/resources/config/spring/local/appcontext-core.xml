@@ -10,6 +10,7 @@
         <property name="jdbcUrl" value="${jdbc.url}" />
         <property name="user" value="${jdbc.username}" />
         <property name="password" value="${jdbc.password}"/>
+        <property name="maxIdleTime" value="${cpool.maxIdleTime}"/>
     </bean>
 
 </beans>
