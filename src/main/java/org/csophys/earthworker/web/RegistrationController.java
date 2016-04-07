@@ -42,8 +42,9 @@ public class RegistrationController {
             CreateQrCodeResponse createQrCodeResponse = KdtApiClient.getCreateQrCodeResponse(dealName, price);
             registration.setPayId(createQrCodeResponse.getResponse().getQr_id());
             registration.setPayStatus(PayStatusEnum.WAIT_RECEIVED);
+            registration.setId(result);
             registrationService.updateById(result, registration);
-            PayStatusCheckTask.getWaitPayOrders().put(registration.getPayId(), result);
+            PayStatusCheckTask.getWaitPayOrders().put(registration.getPayId(), registration);
             return "redirect:" + createQrCodeResponse.getResponse().getQr_url();
         } else {
             return Constant.FAIL;
