@@ -17,7 +17,7 @@
                 <div class="title">2016行远帆船夏令营</div>
                 <div class="title-time">时间：2016/8/24 - 2016/8/28</div>
                 <div class="title-price">￥2800</div>
-                <input type="hidden" name="totalAmount" id="totalAmount" value="2800">
+                <input type="hidden" name="totalAmount" id="totalAmount" value="0.01">
             </td>
         </tr>
     </table>
