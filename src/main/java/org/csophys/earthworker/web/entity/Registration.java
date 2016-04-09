@@ -21,6 +21,7 @@ public class Registration extends Entity {
     private String dealCity;
     private String childrenName;
     private String currentSchool;
+    private Integer winterOrSummer;
     private String englishName;
     private String iDNumber;
     private Date birthDay;
@@ -41,4 +42,5 @@ public class Registration extends Entity {
     private String secondAppellation;
     private String secondContactPhone;
     private PayStatusEnum payStatus;
+
 }

@@ -19,6 +19,7 @@
         dealCity,
         childrenName,
         currentSchool,
+        winterOrSummer,
         englishName,
         iDNumber,
         birthDay,
@@ -53,6 +54,7 @@
         #{dealCity},
         #{childrenName},
         #{currentSchool},
+        #{winterOrSummer},
         #{englishName},
         #{iDNumber},
         #{birthDay},
@@ -114,6 +116,9 @@
         </if>
         <if test=" entity.currentSchool != null">
         currentSchool = #{entity.currentSchool},
+        </if>
+        <if test=" entity.winterOrSummer != null">
+        winterOrSummer = #{entity.winterOrSummer},
         </if>
         <if test=" entity.englishName != null">
         englishName = #{entity.englishName},

@@ -17,6 +17,7 @@
            String dealSession;
            String dealCity;
            String childrenName;
+           Integer winterOrSummer;
            String currentSchool;
            String englishName;
            String iDNumber;
