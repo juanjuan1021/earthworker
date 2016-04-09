@@ -23,7 +23,7 @@ import java.util.UUID;
  * Created by csophys on 16/3/31.
  */
 @Controller
-@SessionAttributes({"openId"})
+@SessionAttributes({"registration"})
 @RequestMapping("/Registration")
 public class RegistrationController {
 
@@ -31,24 +31,18 @@ public class RegistrationController {
     RegistrationService registrationService;
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String addRegistration(Registration registration, @ModelAttribute("openId") String openId) {
+    public String addRegistration(Registration registration, @ModelAttribute("registration") Registration sessionRegistration) {
         registration.setPayStatus(PayStatusEnum.INIT);
-        registration.setWeixinId(openId);
-        int result = registrationService.insert(registration);
-        if (result > 0) {
-            String dealName = registration.getDealName();
-            //TODO:价格通过有赞接口获取
-            String price = String.valueOf(registration.getTotalAmount() * 100);
-            CreateQrCodeResponse createQrCodeResponse = KdtApiClient.getCreateQrCodeResponse(dealName, price);
-            registration.setPayId(createQrCodeResponse.getResponse().getQr_id());
-            registration.setPayStatus(PayStatusEnum.WAIT_RECEIVED);
-            registration.setId(result);
-            registrationService.updateById(result, registration);
-            PayStatusCheckTask.getWaitPayOrders().put(registration.getPayId(), registration);
-            return "redirect:" + createQrCodeResponse.getResponse().getQr_url();
-        } else {
-            return Constant.FAIL;
-        }
+        registration.setWeixinId(sessionRegistration.getWeixinId());
+        String dealName = registration.getDealName();
+        //TODO:价格通过有赞接口获取
+        String price = String.valueOf(registration.getTotalAmount() * 100);
+        CreateQrCodeResponse createQrCodeResponse = KdtApiClient.getCreateQrCodeResponse(dealName, price);
+        registration.setPayId(createQrCodeResponse.getResponse().getQr_id());
+        registration.setPayStatus(PayStatusEnum.WAIT_RECEIVED);
+        registrationService.updateById(sessionRegistration.getId(), registration);
+        PayStatusCheckTask.getWaitPayOrders().put(registration.getPayId(), registration);
+        return "redirect:" + createQrCodeResponse.getResponse().getQr_url();
     }
 
 
@@ -75,9 +69,9 @@ public class RegistrationController {
         }
     }
 
-    @RequestMapping("newRegistration")
-    public String newRegistration(String code, ModelMap modelMap,String dealId) throws Exception {
-        //TODO:dealId对应不同的套餐
+    @RequestMapping("newRegistration/{pageType}")
+    public String newRegistration(String code, ModelMap modelMap, String dealId, @PathVariable("pageType") String pageType, String dealSession, String dealCity) throws Exception {
+        //dealId对应不同的套餐
         //1.获取网页授权acess_token Info
         String access_tokenInfo = HttpUtil.get("https://api.weixin.qq.com/sns/oauth2/access_token?appid=" + Constant.APPID + "&secret=" + Constant.SECRET + "&code=" + code + "&grant_type=authorization_code");
         Map<String, String> tokenMap = new Gson().fromJson(access_tokenInfo, new TypeToken<Map<String, String>>() {
@@ -86,9 +80,30 @@ public class RegistrationController {
         if (StringUtils.isEmpty(openId)) {
             openId = UUID.randomUUID().toString();
         }
-        modelMap.addAttribute("openId", openId);
-        //TODO:根据dealId返回不同的视图
-        return "newRegistration";
+        if ("detail".equals(pageType)) {
+            modelMap.addAttribute("openId", openId);
+            if (StringUtils.isEmpty(dealId)) {
+                return "list";
+            } else {
+                return "detail" + dealId;
+
+            }
+        }//buy 页面
+        else {
+            Registration registration = new Registration();
+            registration.setPayStatus(PayStatusEnum.INIT);
+            registration.setWeixinId(openId);
+            registration.setDealId(dealId);
+            registration.setDealCity(dealCity);
+            registration.setDealSession(dealSession);
+
+            int result = registrationService.insert(registration);
+            registration.setId(result);
+            modelMap.addAttribute("registration", registration);
+            return "buy" + dealId;
+        }
+
+
     }
 
     @RequestMapping("myRegistration")
@@ -99,7 +114,6 @@ public class RegistrationController {
         }.getType());
         String openId = tokenMap.get("openid");
         List<Registration> registrationList = registrationService.getByField("weixinId", openId);
-        //TODO:更新报名的支付状态
         modelMap.addAttribute("registrationList", registrationList);
         return "myRegistration";
     }

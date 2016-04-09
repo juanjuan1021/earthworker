@@ -4,7 +4,7 @@
 $(document).ready(function(){
     $(".list-img").each(function(index){
         var imgName = index + 1;
-        $(this).attr("src","../images/list-"+imgName+".jpg");
+        $(this).attr("src","/images/list-"+imgName+".jpg");
     });
 
     $("#list-img").load(function(){

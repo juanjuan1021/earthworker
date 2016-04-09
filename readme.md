@@ -53,8 +53,9 @@
 
 
 
-# 2 我要报名接口
-/Registration/newRegistration
+# 2 我要报名
+# 2.1 入口 /Registration/newRegistration
+# 2.2 支付 /Registration/add
 
 参数：dealId
 
