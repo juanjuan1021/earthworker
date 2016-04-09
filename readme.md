@@ -51,3 +51,15 @@
     .get("/Registration/getByWeixinId")
 
 
+
+# 2 我要报名接口
+/Registration/newRegistration
+
+参数：dealId
+
+
+# 3 我的报名接口
+
+/Registration/myRegistration
+
+暂时只能在在公众号环境测试

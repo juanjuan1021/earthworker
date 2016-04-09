@@ -76,7 +76,8 @@ public class RegistrationController {
     }
 
     @RequestMapping("newRegistration")
-    public String newRegistration(String code, ModelMap modelMap) throws Exception {
+    public String newRegistration(String code, ModelMap modelMap,String dealId) throws Exception {
+        //TODO:dealId对应不同的套餐
         //1.获取网页授权acess_token Info
         String access_tokenInfo = HttpUtil.get("https://api.weixin.qq.com/sns/oauth2/access_token?appid=" + Constant.APPID + "&secret=" + Constant.SECRET + "&code=" + code + "&grant_type=authorization_code");
         Map<String, String> tokenMap = new Gson().fromJson(access_tokenInfo, new TypeToken<Map<String, String>>() {
@@ -86,6 +87,7 @@ public class RegistrationController {
             openId = UUID.randomUUID().toString();
         }
         modelMap.addAttribute("openId", openId);
+        //TODO:根据dealId返回不同的视图
         return "newRegistration";
     }
 
