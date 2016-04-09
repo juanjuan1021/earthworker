@@ -56,6 +56,7 @@ public class PayStatusCheckTask {
 
     private String buildBody(PayOrderResponse.PayOrderGroup.PayOrder payOrder, String openId) {
         String json = "{\"touser\":\"" + openId + "\",\"msgtype\":\"text\",\"text\":{\"content\":\"亲，你已支付成功。请在我的报名中完善报名信息哦~.\"}}";
+        System.out.println(json);
         return json;
     }
 
