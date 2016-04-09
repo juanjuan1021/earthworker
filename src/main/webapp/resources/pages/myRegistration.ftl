@@ -15,7 +15,6 @@
 
     <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
     <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="/earthworker-1.0-SNAPSHOT/resources/js/lib/jquery.min.js"></script>
 </head>
 <body>
 <table class="table">
