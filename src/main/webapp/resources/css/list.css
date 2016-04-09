@@ -1,0 +1,31 @@
+body{
+    font-family: "Microsoft YaHei";
+}
+.list-img{
+    width: 100%;
+    height: auto;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    -moz-border-radius : 10px;
+}
+.mask{
+    position:absolute;
+    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0)), to(rgba(0,0,0,0.7)));
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    -moz-border-radius : 10px;
+}
+.title{
+    position: relative;
+    top:430px;
+    left:80px;
+    color:white;
+    font-size:80px;
+}
+.subtitle{
+    position:absolute;
+    top:540px;
+    left:80px;
+    color:whitesmoke;
+    font-size:45px;
+}
