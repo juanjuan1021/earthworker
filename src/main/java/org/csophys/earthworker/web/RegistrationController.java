@@ -41,7 +41,7 @@ public class RegistrationController {
         registration.setPayId(createQrCodeResponse.getResponse().getQr_id());
         registration.setPayStatus(PayStatusEnum.WAIT_RECEIVED);
         registrationService.updateById(sessionRegistration.getId(), registration);
-        PayStatusCheckTask.getWaitPayOrders().put(registration.getPayId(), registration);
+        PayStatusCheckTask.getWaitPayOrders().put(registration.getPayId(), sessionRegistration);
         return "redirect:" + createQrCodeResponse.getResponse().getQr_url();
     }
 
@@ -77,16 +77,15 @@ public class RegistrationController {
         Map<String, String> tokenMap = new Gson().fromJson(access_tokenInfo, new TypeToken<Map<String, String>>() {
         }.getType());
         String openId = tokenMap.get("openid");
+        modelMap.addAttribute("openId", openId);
         if (StringUtils.isEmpty(openId)) {
             openId = UUID.randomUUID().toString();
         }
         if ("detail".equals(pageType)) {
-            modelMap.addAttribute("openId", openId);
             if (StringUtils.isEmpty(dealId)) {
                 return "list";
             } else {
                 return "detail" + dealId;
-
             }
         }//buy 页面
         else {

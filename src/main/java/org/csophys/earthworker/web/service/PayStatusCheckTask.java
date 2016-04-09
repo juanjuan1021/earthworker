@@ -43,6 +43,7 @@ public class PayStatusCheckTask {
                 //微信消息通知
                 try {
                     HttpUtil.post("https://api.weixin.qq.com/cgi-bin/message/mass/preview?access_token=" + WeixinAccessTokenTask.getAccessToken(), buildBody(payOrder, waitPayOrders.get(payOrder.getQr_id()).getWeixinId()));
+                    System.out.println("https://api.weixin.qq.com/cgi-bin/message/mass/preview?access_token=" + WeixinAccessTokenTask.getAccessToken());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
