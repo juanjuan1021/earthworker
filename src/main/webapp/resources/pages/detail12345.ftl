@@ -3,25 +3,25 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
-    <script src="../js/jquery-2.1.1.min.js" type="text/javascript"></script>
-    <script src="../js/detail.js" type="text/javascript"></script>
-    <link rel="stylesheet" type="text/css" href="../css/detail.css">
+    <script src="/js/jquery-2.1.1.min.js" type="text/javascript"></script>
+    <script src="/js/detail.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="/css/detail.css">
 </head>
 <body>
 <div style="position:relative;">
     <div>
-        <img class="detail-img" src="../images/detail-title.jpg">
+        <img class="detail-img" src="/images/detail-title.jpg">
     </div>
     <div class="title">2015行远帆船夏日营</div>
     <div class="subtitle">
     <span>
-        <img class="icon" src="../images/icon_time.png">
+        <img class="icon" src="/images/icon_time.png">
     </span>
         <span>8月24日-8月28日</span>
     </div>
     <div class="subtitle">
     <span>
-        <img class="icon" src="../images/icon_age.png">
+        <img class="icon" src="/images/icon_age.png">
     </span>
         <span>6-16周岁</span>
     </div>
@@ -32,7 +32,7 @@
         5天尽享OP帆船理论课程、水上训练、数字化创新学习！国家专业运动场地和教练，专人负责安全事宜，确保营员在安全的环境中学习，无需游泳基础，100%安全！从认识帆船、组装帆船到下水比赛，让孩子真正掌握驾驭OP级帆船，飘扬在茫茫碧海中体验一个水手的勇敢和气概。
     </div>
     <div>
-        <img class="detail-img" src="../images/day-start.jpg">
+        <img class="detail-img" src="/images/day-start.jpg">
     </div>
     <div class="activity-box">
         <div style="border:2px solid orange;width:40%;background-color:#FFFFFF;">
@@ -51,7 +51,7 @@
             </ul>
         </div>
         <div>
-            <img class="detail-img" src="../images/day-1.jpg">
+            <img class="detail-img" src="/images/day-1.jpg">
         </div>
     </div>
 
@@ -66,7 +66,7 @@
             </ul>
         </div>
         <div>
-            <img class="detail-img" src="../images/day-2.jpg">
+            <img class="detail-img" src="/images/day-2.jpg">
         </div>
     </div>
 
@@ -79,7 +79,7 @@
             </ul>
         </div>
         <div>
-            <img class="detail-img" src="../images/day-3.jpg">
+            <img class="detail-img" src="/images/day-3.jpg">
         </div>
     </div>
 
@@ -104,7 +104,7 @@
     <table style="width: 100%">
         <tr>
             <td class="consult">
-                <div class="consult-img"><img src="../images/icon_phone.png"></div>
+                <div class="consult-img"><img src="/images/icon_phone.png"></div>
                 <div class="consult-title">咨询</div>
             </td>
             <td class="consult-button" colspan="3">
@@ -119,7 +119,7 @@
     <div class="title-box">
         <table>
             <tr>
-                <td><img id="enter-img" src="../images/detail-title.jpg"></td>
+                <td><img id="enter-img" src="/images/detail-title.jpg"></td>
                 <td id="title-td" colspan="2" class="title-des">
                     <div class="title-name">2016行远帆船夏令营</div>
                     <div class="title-price">￥2800</div>
@@ -156,7 +156,7 @@
     </div>
     <div class="line"></div>
     <div class="course-button">
-        <a href="buy.html"><input class="apply-button" type="button" value="购买报名"></a>
+        <a href="/Registration/newRegistration/buy?dealId=12345"><input class="apply-button" type="button" value="购买报名"></a>
     </div>
 </div>
 </body>

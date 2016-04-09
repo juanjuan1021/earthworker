@@ -43,6 +43,7 @@ public class PayStatusCheckTask {
                 //微信消息通知
                 try {
                     HttpUtil.post("https://api.weixin.qq.com/cgi-bin/message/mass/preview?access_token=" + WeixinAccessTokenTask.getAccessToken(), buildBody(payOrder, waitPayOrders.get(payOrder.getQr_id()).getWeixinId()));
+                    System.out.println("https://api.weixin.qq.com/cgi-bin/message/mass/preview?access_token=" + WeixinAccessTokenTask.getAccessToken());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -55,6 +56,7 @@ public class PayStatusCheckTask {
 
     private String buildBody(PayOrderResponse.PayOrderGroup.PayOrder payOrder, String openId) {
         String json = "{\"touser\":\"" + openId + "\",\"msgtype\":\"text\",\"text\":{\"content\":\"亲，你已支付成功。请在我的报名中完善报名信息哦~.\"}}";
+        System.out.println(json);
         return json;
     }
 
