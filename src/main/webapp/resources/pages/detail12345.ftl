@@ -114,50 +114,54 @@
     </table>
 </div>
 <div class="mask"></div>
-<div class="float-box">
-    <div class="line"></div>
-    <div class="title-box">
-        <table>
-            <tr>
-                <td><img id="enter-img" src="/images/detail-title.jpg"></td>
-                <td id="title-td" colspan="2" class="title-des">
-                    <div class="title-name">2016行远帆船夏令营</div>
-                    <div class="title-price">￥2800</div>
-                    <div class="title-age">适合年龄：6-16周岁</div>
-                </td>
-            </tr>
-        </table>
-    </div>
-    <div class="line"></div>
-    <div class="course-box">
-        <div class="course-title">课程时间</div>
-        <div class="course-time">
+<form action="/Registration/newRegistration/buy?dealId=12345" method="post" role="form">
+    <div class="float-box">
+        <div class="line"></div>
+        <div class="title-box">
             <table>
                 <tr>
-                    <td align="center" valign="middle"><div class="course-session" id="time1" onclick="selectTime(this)">2016/8/24-2016/8/28</div></td>
-                    <td align="center" valign="middle"><div class="course-session" id="time2" onclick="selectTime(this)">2016/8/24-2016/8/28</div></td>
+                    <td><img id="enter-img" src="/images/detail-title.jpg"></td>
+                    <td id="title-td" colspan="2" class="title-des">
+                        <div class="title-name">2016行远帆船夏令营</div>
+                        <div class="title-price">￥2800</div>
+                        <div class="title-age">适合年龄：6-16周岁</div>
+                    </td>
                 </tr>
             </table>
         </div>
-    </div>
-    <div class="course-box">
-        <div class="course-title">课程所在城市</div>
-        <div class="course-time">
-            <table>
-                <tr>
-                    <td><div id="city1" class="course-city" onclick="selectCity(this)">上海</div></td>
-                    <td><div id="city2" class="course-city" onclick="selectCity(this)">北京</div></td>
-                    <td><!--<div id="city3" class="course-city" onclick="selectCity(this)">广州</div>--></td>
-                    <td><!--<div id="city4" class="course-city" onclick="selectCity(this)">杭州</div>--></td>
-                    <td><!--<div id="city5" class="course-city" onclick="selectCity(this)">其他</div>--></td>
-                </tr>
-            </table>
+        <div class="line"></div>
+        <div class="course-box">
+            <div class="course-title">课程时间</div>
+            <div class="course-time">
+                <table>
+                    <tr>
+                        <td align="center" valign="middle"><div class="course-session" id="time1" onclick="selectTime(this)">2016/8/24-2016/8/28</div></td>
+                        <td align="center" valign="middle"><div class="course-session" id="time2" onclick="selectTime(this)">2016/8/24-2016/8/28</div></td>
+                        <input id="dealSession" name="dealSession" style="display:none">
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="course-box">
+            <div class="course-title">课程所在城市</div>
+            <div class="course-time">
+                <table>
+                    <tr>
+                        <td><div id="city1" class="course-city" onclick="selectCity(this)">上海</div></td>
+                        <td><div id="city2" class="course-city" onclick="selectCity(this)">北京</div></td>
+                        <td><!--<div id="city3" class="course-city" onclick="selectCity(this)">广州</div>--></td>
+                        <td><!--<div id="city4" class="course-city" onclick="selectCity(this)">杭州</div>--></td>
+                        <td><!--<div id="city5" class="course-city" onclick="selectCity(this)">其他</div>--></td>
+                        <input id="dealCity" name="dealCity" style="display:none">
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="line"></div>
+        <div class="course-button">
+            <input class="apply-button" type="submit" value="购买报名">
         </div>
     </div>
-    <div class="line"></div>
-    <div class="course-button">
-        <a href="/Registration/newRegistration/buy?dealId=12345"><input class="apply-button" type="button" value="购买报名"></a>
-    </div>
-</div>
+</form>
 </body>
 </html>

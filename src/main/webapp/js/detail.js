@@ -5,6 +5,10 @@ $(document).ready(function(){
     var imgWidth = $(window).width()/3;
     $("#enter-img").attr("width",imgWidth);
     $("#title-td").attr("width",$(window).width()-imgWidth);
+    $("#confirm").click(function(){
+        $(".float-box").css("display","block");
+        $(".mask").css("display","block");
+    });
     $("#apply").click(function(){
         $(".float-box").css("display","block");
         $(".mask").css("display","block");
@@ -18,6 +22,8 @@ function selectTime(obj){
     });
     $("#"+obj.id+"").css("color","#3E89D2");
     $("#"+obj.id+"").css("border-color","#3E89D2");
+    var dealSession = $("#"+obj.id+"").text();
+    $("#dealSession").attr("value",dealSession);
 }
 function selectCity(obj){
     $(".course-city").each(function(){
@@ -26,4 +32,6 @@ function selectCity(obj){
     });
     $("#"+obj.id+"").css("color","#3E89D2");
     $("#"+obj.id+"").css("border-color","#3E89D2");
+    var dealCity = $("#"+obj.id+"").text();
+    $("#dealCity").attr("value",dealCity);
 }
