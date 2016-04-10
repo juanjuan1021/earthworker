@@ -72,18 +72,17 @@ public class RegistrationController {
     @RequestMapping("newRegistration/detail")
     public String newRegistrationDetail(String code, ModelMap modelMap, String dealId) throws Exception {
         //dealId对应不同的套餐
-        //1.获取网页授权acess_token Info
-        String access_tokenInfo = HttpUtil.get("https://api.weixin.qq.com/sns/oauth2/access_token?appid=" + Constant.APPID + "&secret=" + Constant.SECRET + "&code=" + code + "&grant_type=authorization_code");
-        Map<String, String> tokenMap = new Gson().fromJson(access_tokenInfo, new TypeToken<Map<String, String>>() {
-        }.getType());
-        System.out.println("access_tokenInfo:" + access_tokenInfo);
-        String openId = tokenMap.get("openid");
-        if (StringUtils.isEmpty(openId)) {
-            openId = UUID.randomUUID().toString();
-        }
-        modelMap.addAttribute("openId", openId);
-
         if (StringUtils.isEmpty(dealId)) {
+            //1.获取网页授权acess_token Info
+            String access_tokenInfo = HttpUtil.get("https://api.weixin.qq.com/sns/oauth2/access_token?appid=" + Constant.APPID + "&secret=" + Constant.SECRET + "&code=" + code + "&grant_type=authorization_code");
+            Map<String, String> tokenMap = new Gson().fromJson(access_tokenInfo, new TypeToken<Map<String, String>>() {
+            }.getType());
+            System.out.println("access_tokenInfo:" + access_tokenInfo);
+            String openId = tokenMap.get("openid");
+            if (StringUtils.isEmpty(openId)) {
+                openId = UUID.randomUUID().toString();
+            }
+            modelMap.addAttribute("openId", openId);
             return "list";
         } else {
             return "detail" + dealId;
