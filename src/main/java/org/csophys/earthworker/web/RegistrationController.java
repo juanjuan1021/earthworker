@@ -23,7 +23,7 @@ import java.util.UUID;
  * Created by csophys on 16/3/31.
  */
 @Controller
-@SessionAttributes({"registration"})
+@SessionAttributes({"registration", "openId"})
 @RequestMapping("/Registration")
 public class RegistrationController {
 
@@ -69,8 +69,8 @@ public class RegistrationController {
         }
     }
 
-    @RequestMapping("newRegistration/{pageType}")
-    public String newRegistration(String code, ModelMap modelMap, String dealId, @PathVariable("pageType") String pageType, String dealSession, String dealCity) throws Exception {
+    @RequestMapping("newRegistration/detail")
+    public String newRegistrationDetail(String code, ModelMap modelMap, String dealId) throws Exception {
         //dealId对应不同的套餐
         //1.获取网页授权acess_token Info
         String access_tokenInfo = HttpUtil.get("https://api.weixin.qq.com/sns/oauth2/access_token?appid=" + Constant.APPID + "&secret=" + Constant.SECRET + "&code=" + code + "&grant_type=authorization_code");
@@ -78,31 +78,32 @@ public class RegistrationController {
         }.getType());
         System.out.println("access_tokenInfo:" + access_tokenInfo);
         String openId = tokenMap.get("openid");
-        modelMap.addAttribute("openId", openId);
         if (StringUtils.isEmpty(openId)) {
             openId = UUID.randomUUID().toString();
         }
-        if ("detail".equals(pageType)) {
-            if (StringUtils.isEmpty(dealId)) {
-                return "list";
-            } else {
-                return "detail" + dealId;
-            }
-        }//buy 页面
-        else {
-            Registration registration = new Registration();
-            registration.setPayStatus(PayStatusEnum.INIT);
-            registration.setWeixinId(openId);
-            registration.setDealId(dealId);
-            registration.setDealCity(dealCity);
-            registration.setDealSession(dealSession);
+        modelMap.addAttribute("openId", openId);
 
-            int result = registrationService.insert(registration);
-            registration.setId(result);
-            modelMap.addAttribute("registration", registration);
-            return "buy" + dealId;
+        if (StringUtils.isEmpty(dealId)) {
+            return "list";
+        } else {
+            return "detail" + dealId;
         }
 
+    }
+
+    @RequestMapping("newRegistration/buy")
+    public String newRegistrationBuy(String dealId, String dealSession, String dealCity, @ModelAttribute("openId") String openId, ModelMap modelMap) {
+        Registration registration = new Registration();
+        registration.setPayStatus(PayStatusEnum.INIT);
+        registration.setWeixinId(openId);
+        registration.setDealId(dealId);
+        registration.setDealCity(dealCity);
+        registration.setDealSession(dealSession);
+        System.out.println("openId:" + openId);
+        int result = registrationService.insert(registration);
+        registration.setId(result);
+        modelMap.addAttribute("registration", registration);
+        return "buy" + dealId;
 
     }
 
