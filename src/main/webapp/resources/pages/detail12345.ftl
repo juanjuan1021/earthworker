@@ -114,7 +114,7 @@
     </table>
 </div>
 <div class="mask"></div>
-<form action="/Registration/newRegistration/buy?dealId=12345" method="post" role="form">
+<form action="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx24a9d7386e8f1036&redirect_uri=http://www.tinyearthwalker.com/Registration/newRegistration/buy?dealId=12345&response_type=code&scope=snsapi_base&state=1&connect_redirect=1#wechat_redirect" method="post" role="form">
     <div class="float-box">
         <div class="line"></div>
         <div class="title-box">
