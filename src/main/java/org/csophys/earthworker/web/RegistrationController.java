@@ -60,8 +60,8 @@ public class RegistrationController {
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     @ResponseBody
-    public String updateRegistration(Registration registration) {
-        int result = registrationService.updateById(registration.getId(), registration);
+    public String updateRegistration(Registration registration,@ModelAttribute("registration") Registration sessionRegistration) {
+        int result = registrationService.updateById(sessionRegistration.getId(), registration);
         if (result > 0) {
             return Constant.SUCCESS;
         } else {
@@ -105,6 +105,31 @@ public class RegistrationController {
         return "buy" + dealId;
 
     }
+
+    @RequestMapping("update/basic")
+    public String updateRegistrationBasic(Registration registration/*,@ModelAttribute("registration") Registration sessionRegistration*/) {
+        //registrationService.updateById(sessionRegistration.getId(), registration);
+        return "basic" ;
+    }
+
+    @RequestMapping("update/class")
+    public String updateRegistrationClass(Registration registration/*,@ModelAttribute("registration") Registration sessionRegistration*/) {
+        //registrationService.updateById(sessionRegistration.getId(), registration);
+        return "class" ;
+    }
+
+    @RequestMapping("update/contact")
+    public String updateRegistrationContact(Registration registration/*,@ModelAttribute("registration") Registration sessionRegistration*/) {
+        //registrationService.updateById(sessionRegistration.getId(), registration);
+        return "contact" ;
+    }
+
+    @RequestMapping("update/finish")
+    public String updateRegistrationFinish(Registration registration/*,@ModelAttribute("registration") Registration sessionRegistration*/) {
+        //registrationService.updateById(sessionRegistration.getId(), registration);
+        return "finish" ;
+    }
+
 
     @RequestMapping("myRegistration")
     public String myRegistration(String code, ModelMap modelMap) throws Exception {

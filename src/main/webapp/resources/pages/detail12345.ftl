@@ -83,7 +83,7 @@
         </div>
     </div>
 
-    <div class="link"><a href="process.html">查看活动流程详情></a></div>
+    <div class="link"><a href="process.ftl">查看活动流程详情></a></div>
     <div class="activity">
         ------  •  温馨提示  •  ------
     </div>

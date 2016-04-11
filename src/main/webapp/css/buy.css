@@ -145,9 +145,35 @@ body{
 }
 .process-box td{
     font-size:36px;
+    position:relative;
+}
+.line-blue{
+    height: 80px;
+    border-bottom: 2px solid #3E89D2;
+}
+.line-grey{
+    height: 80px;
+    border-bottom: 2px solid #B3B3B3;
+}
+.process-done{
+    float:right;
+    width: 50%;
+    height:33px;
+    border-bottom: 2px solid #3E89D2
+}
+.process-do{
+    float:left;
+    width: 50%;
+    height:33px;
+    border-bottom: 2px solid #B3B3B3
 }
 .process-img{
     padding-top: 20px;
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    margin: -25px;
+    left: 50%;
 }
 .step-box{
     position:fixed;
