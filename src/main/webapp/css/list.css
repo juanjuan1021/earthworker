@@ -1,31 +1,36 @@
 body{
     font-family: "Microsoft YaHei";
+    margin: 1px;
+    padding: 1px;
+}
+.list{
+    padding:0;
 }
 .list-img{
     width: 100%;
     height: auto;
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-    -moz-border-radius : 10px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -moz-border-radius : 5px;
 }
 .mask{
     position:absolute;
     background: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0)), to(rgba(0,0,0,0.7)));
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
-    -moz-border-radius : 10px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -moz-border-radius : 5px;
 }
 .title{
     position: relative;
-    top:430px;
-    left:80px;
-    color:white;
-    font-size:80px;
+    top:70%;
+    left:30px;
+    color:#FFFFFF;
+    font-size:44px;
 }
 .subtitle{
     position:absolute;
-    top:540px;
-    left:80px;
-    color:whitesmoke;
-    font-size:45px;
+    top:86%;
+    left:30px;
+    color:#CCCCCC;
+    font-size:24px;
 }

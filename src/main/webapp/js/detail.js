@@ -5,13 +5,15 @@ $(document).ready(function(){
     var imgWidth = $(window).width()/3;
     $("#enter-img").attr("width",imgWidth);
     $("#title-td").attr("width",$(window).width()-imgWidth);
-    $("#confirm").click(function(){
-        $(".float-box").css("display","block");
-        $(".mask").css("display","block");
-    });
     $("#apply").click(function(){
         $(".float-box").css("display","block");
         $(".mask").css("display","block");
+        $(".detail-box").css("position","fixed");
+    });
+    $(".mask").click(function(){
+        $(".float-box").css("display","none");
+        $(".mask").css("display","none");
+        $(".detail-box").css("position","relative");
     });
 });
 

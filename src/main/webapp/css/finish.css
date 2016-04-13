@@ -1,6 +1,7 @@
 body{
     font-family: "Microsoft YaHei";
     background-color: #F0F0F0;
+    margin:0;
 }
 .finish-img{
     text-align: center;
@@ -12,72 +13,39 @@ body{
     text-align: center;
     font-weight:bold;
     margin-top: 20px;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
 }
 .finish-info{
     background-color: #FFFFFF;
     margin-bottom: 30px;
 }
 .line{
-    background-color: gainsboro;
+    background-color: #CCCCCC;
     height: 2px;
     width: 100%;
-    margin-bottom:30px;
-}
-.info-img{
-    width: 32%;
-}
-.img-title{
-    width:100%;
-}
-.info-desc{
-    width: 65%;
-    padding-left: 2%;
-}
-.info-box{
-    padding-left: 2%;
-    margin-bottom:10px;
-}
-.info-name{
-    font-size:50px;
-    padding: 1%;
-    color:#1A1A1A;
-}
-.info-time{
-    font-size:32px;
-    color:#666666;
-    padding: 1%;
-}
-.info-price{
-    font-size:40px;
-    color:#FF3939;
-    padding: 1%;
 }
 .children-info{
-    padding-left: 2%;
-    padding-bottom:30px;
-    height:40%;
+    padding:30px;
 }
 .photo-td{
-    width: 30%;
+    width: 20%;
+}
+.photo-img{
+    width:100%;
 }
 .children-td{
-    width: 65%;
-    padding-left: 2%;
+    width: 70%;
+    padding-left: 30px;
 }
 .children-name{
     color: #1A1A1A;
-    font-size:50px;
+    font-size:30px;
+    padding-bottom: 20px;
 }
-.children-age{
+.children-desc{
     color: #666666;
-    font-size:40px;
-    padding-top: 3%;
-}
-.children-school{
-    color: #666666;
-    font-size:40px;
-    padding-top: 3%;
+    font-size:24px;
+    padding-bottom: 20px;
 }
 .order-box{
     background-color: #FFFFFF;
@@ -105,4 +73,25 @@ body{
     font-size:40px;
     padding-bottom: 20px;
     padding-left: 3%;
+}
+.title-des{
+    padding-left: 30px;
+}
+.title-name{
+    font-size:36px;
+    color:#1A1A1A;
+}
+.title-age{
+    font-size:24px;
+    color:#666666;
+    padding-top:18px;
+}
+.title-price{
+    font-size:40px;
+    color:#FF3939;
+    padding-top: 12px;
+}
+.title-box{
+    padding:30px;
+    background-color:#FFFFFF;
 }

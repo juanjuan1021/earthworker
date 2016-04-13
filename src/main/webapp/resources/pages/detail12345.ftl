@@ -2,31 +2,31 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=0.5, user-scalable=no" />
     <title></title>
     <script src="/js/jquery-2.1.1.min.js" type="text/javascript"></script>
     <script src="/js/detail.js" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="/css/detail.css">
 </head>
 <body>
-<div style="position:relative;">
+<div class="detail-box">
     <div>
         <img class="detail-img" src="/images/detail-title.jpg">
     </div>
-    <div class="title">2015行远帆船夏日营</div>
-    <div class="subtitle">
-    <span>
-        <img class="icon" src="/images/icon_time.png">
-    </span>
-        <span>8月24日-8月28日</span>
+    <div class="title">2015行远帆船夏日营 <span class="title-tag">全程外教</span></div>
+    <div class="title-money">￥2800 <span class="real-money">市场价 ￥4800</span></div>
+    <div class="title-line"></div>
+    <div class="subtitle-box">
+        <table style="width:100%">
+            <tr>
+                <td class="subtitle-time">时间<span class="subtitle-desc">8月24日-8月28日</span></td>
+                <td class="subtitle-age">适合年龄<span class="subtitle-desc">6-16周岁</span></td>
+            </tr>
+        </table>
     </div>
-    <div class="subtitle">
-    <span>
-        <img class="icon" src="/images/icon_age.png">
-    </span>
-        <span>6-16周岁</span>
-    </div>
+    <div class="line"></div>
     <div class="activity">
-        ------  •  活动特色  •  ------
+        <span><img src="../../images/tag_left.png"></span><span class="activity-desc">活动特色</span><span><img src="../../images/tag_right.png"></span>
     </div>
     <div class="intro">
         5天尽享OP帆船理论课程、水上训练、数字化创新学习！国家专业运动场地和教练，专人负责安全事宜，确保营员在安全的环境中学习，无需游泳基础，100%安全！从认识帆船、组装帆船到下水比赛，让孩子真正掌握驾驭OP级帆船，飘扬在茫茫碧海中体验一个水手的勇敢和气概。
@@ -35,11 +35,10 @@
         <img class="detail-img" src="/images/day-start.jpg">
     </div>
     <div class="activity-box">
-        <div style="border:2px solid orange;width:40%;background-color:#FFFFFF;">
-            <div style="margin:10px;border:2px solid orange;padding:10px;color:orange;font-size:40px;text-align:center;font-weight:bold;">活动流程</div>
+        <div class="box-one">
+            <div class="box-two">活动流程</div>
         </div>
     </div>
-
     <div class="box">
         <div class="day">第一天</div>
         <div class="process">
@@ -83,31 +82,32 @@
         </div>
     </div>
 
-    <div class="link"><a href="process.ftl">查看活动流程详情></a></div>
-    <div class="activity">
-        ------  •  温馨提示  •  ------
-    </div>
-    <div class="process">
-        <ul>
-            <li>费用说明：4380/人/期；</li>
-            <li>集合信息：a、上海市威海路48号（黄陂北路口）民生银行大门口；b、南方商城，沪闵路过万源路路口；</li>
-            <li>报名方式：添加微信号“A409215”索要报名表；</li>
-            <li>公司账户：上海金堂沙滩会展服务有限公司；</li>
-            <li>账号：038598 000400 34943；</li>
-            <li>开户行：中国农业银行上海市金山区金山支行；</li>
-            <li>营址：奉贤碧海金沙，海涵路6号骑浪体育。</li>
-        </ul>
+    <div class="link"><a href="process.ftl">查看活动流程详情 ></a></div>
+    <div class="bottom-box">
+        <div class="activity">
+            <span><img src="../../images/tag_left.png"></span><span class="activity-desc">温馨提示</span><span><img src="../../images/tag_right.png"></span>
+        </div>
+        <div class="process">
+            <ul>
+                <li>费用说明：4380/人/期；</li>
+                <li>集合信息：a、上海市威海路48号（黄陂北路口）民生银行大门口；b、南方商城，沪闵路过万源路路口；</li>
+                <li>报名方式：添加微信号“A409215”索要报名表；</li>
+                <li>公司账户：上海金堂沙滩会展服务有限公司；</li>
+                <li>账号：038598 000400 34943；</li>
+                <li>开户行：中国农业银行上海市金山区金山支行；</li>
+                <li>营址：奉贤碧海金沙，海涵路6号骑浪体育。</li>
+            </ul>
+        </div>
     </div>
 </div>
 <div class="float-button">
-    <div class="line"></div>
-    <table style="width: 100%">
+    <table style="width: 100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
             <td class="consult">
                 <div class="consult-img"><img src="/images/icon_phone.png"></div>
                 <div class="consult-title">咨询</div>
             </td>
-            <td class="consult-button" colspan="3">
+            <td class="consult-button">
                 <input class="apply-button" id="apply" type="button" value="报名课程">
             </td>
         </tr>
@@ -116,12 +116,11 @@
 <div class="mask"></div>
 <form action="/Registration/newRegistration/buy?dealId=12345" method="post" role="form">
     <div class="float-box">
-        <div class="line"></div>
         <div class="title-box">
             <table>
                 <tr>
                     <td><img id="enter-img" src="/images/detail-title.jpg"></td>
-                    <td id="title-td" colspan="2" class="title-des">
+                    <td id="title-td" class="title-des">
                         <div class="title-name">2016行远帆船夏令营</div>
                         <div class="title-price">￥2800</div>
                         <div class="title-age">适合年龄：6-16周岁</div>

@@ -4,6 +4,7 @@ import lombok.Data;
 import org.csophys.common.service.entity.Entity;
 import org.csophys.earthworker.web.enums.PayStatusEnum;
 
+import java.io.File;
 import java.util.Date;
 
 /**
@@ -42,5 +43,4 @@ public class Registration extends Entity {
     private String secondAppellation;
     private String secondContactPhone;
     private PayStatusEnum payStatus;
-
 }
