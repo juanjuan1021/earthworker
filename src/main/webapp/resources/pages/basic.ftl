@@ -10,30 +10,32 @@
 </head>
 <body>
 <div class="process-box">
-    <table style="width:100%;border-collapse:collapse;">
+    <table style="width:100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
-            <td>
-                <div class="done-font">
-                    基本信息
-                    <div style="float:left;width: 50%"></div><div class="process-done"></div>
-                </div>
-                <div class="process-img" style="background:url(../../images/icon_done.png) no-repeat;margin:23px;left:24%"></div>
-            </td>
-            <td>
-                <div class="line-grey do-font">课程相关</div>
-                <div class="process-img" style="background:url(../../images/icon_do.png) no-repeat"></div>
-            </td>
-            <td>
-                <div class="line-grey do-font">联系人信息</div>
-                <div class="process-img" style="background:url(../../images/icon_do.png) no-repeat"></div>
-            </td>
-            <td>
-                <div class="do-font">
-                    完成报名
-                    <div class="process-do"></div><div style="float:right;width: 50%"></div>
-                </div>
-                <div class="process-img" style="background:url(../../images/icon_do.png) no-repeat;margin:23px;left:24%"></div>
-            </td>
+            <td align="center" valign="middle" class="done-font">基本信息</td>
+            <td align="center" valign="middle" class="do-font">课程相关</td>
+            <td align="center" valign="middle" class="do-font">联系人信息</td>
+            <td align="center" valign="middle" class="do-font">完成报名</td>
+        </tr>
+    </table>
+    <table style="width:100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td align="center" valign="middle" class="line-margin"></td>
+            <td align="center" valign="middle" class="line-blue"></td>
+            <td align="center" valign="middle" class="line-grey"></td>
+            <td align="center" valign="middle" class="line-grey"></td>
+            <td align="center" valign="middle" class="line-grey"></td>
+            <td align="center" valign="middle" class="line-grey"></td>
+            <td align="center" valign="middle" class="line-grey"></td>
+            <td align="center" valign="middle" class="line-margin"></td>
+        </tr>
+    </table>
+    <table style="width:100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td align="center" valign="middle"><div class="process-img" style="background:url(../../images/icon_done.png) no-repeat"></div></td>
+            <td align="center" valign="middle"><div class="process-img" style="background:url(../../images/icon_do.png) no-repeat"></div></td>
+            <td align="center" valign="middle"><div class="process-img" style="background:url(../../images/icon_do.png) no-repeat"></div></td>
+            <td align="center" valign="middle"><div class="process-img" style="background:url(../../images/icon_do.png) no-repeat"></div></td>
         </tr>
     </table>
 </div>

@@ -132,25 +132,16 @@ body{
 .do-font{
     color:#B3B3B3
 }
+.line-margin{
+    padding-bottom:44px;
+}
 .line-blue{
-    height: 80px;
+    padding-bottom:44px;
     border-bottom: 2px solid #3E89D2;
 }
 .line-grey{
-    height: 80px;
+    padding-bottom:44px;
     border-bottom: 2px solid #B3B3B3;
-}
-.process-done{
-    float:right;
-    width: 50%;
-    height:46px;
-    border-bottom: 2px solid #3E89D2
-}
-.process-do{
-    float:left;
-    width: 50%;
-    height:46px;
-    border-bottom: 2px solid #B3B3B3
 }
 .process-img{
     padding-top: 20px;
