@@ -2,10 +2,12 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=0.5, user-scalable=no" />
     <title></title>
     <link rel="stylesheet" type="text/css" href="/css/detail.css">
 </head>
 <body>
+<div style="margin-top: 30px;"></div>
 <div class="box">
     <div class="day">第一天</div>
     <div class="process">
@@ -79,6 +81,9 @@
     <div>
         <img class="detail-img" src="/images/day-6.jpg">
     </div>
+</div>
+<div class="box" style="text-align:center">
+    <a href="detail12345.ftl" style="font-size:20px; text-decoration: none">返回》</a>
 </div>
 </body>
 </html>

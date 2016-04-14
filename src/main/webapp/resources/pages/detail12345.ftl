@@ -104,8 +104,10 @@
     <table style="width: 100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
             <td class="consult">
-                <div class="consult-img"><img src="/images/icon_phone.png"></div>
-                <div class="consult-title">咨询</div>
+                <a href="tel:13951675134">
+                    <div class="consult-img"><img src="/images/icon_phone.png"></div>
+                    <div class="consult-title">咨询</div>
+                </a>
             </td>
             <td class="consult-button">
                 <input class="apply-button" id="apply" type="button" value="报名课程">
