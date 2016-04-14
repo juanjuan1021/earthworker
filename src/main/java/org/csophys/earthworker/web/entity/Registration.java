@@ -43,4 +43,5 @@ public class Registration extends Entity {
     private String secondAppellation;
     private String secondContactPhone;
     private PayStatusEnum payStatus;
+    private File uploadImg;
 }
