@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=0.5, user-scalable=no" />
     <title></title>
     <script src="/js/jquery-2.1.1.min.js" type="text/javascript"></script>
+    <script src="/js/info.js" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="/css/buy.css">
 </head>
 <body>
@@ -58,29 +59,29 @@
         </div>
         <div class="info-box-row">
             <span class="info-name">兴趣爱好</span>
-            <span class="info-enter"><input id="interest" name="interest" class="info-input" type="text" placeholder="请输入孩子的兴趣爱好" required="required"></span>
+            <span class="info-enter"><input id="interest" name="interest" class="info-input" type="text" placeholder="请输入孩子的兴趣爱好"></span>
         </div>
         <div class="info-box-row">
             <span class="info-name">参加目的</span>
-            <span class="info-enter"><input id="purpose" name="purpose" class="info-input" type="text" placeholder="请输入孩子参加活动的目的" required="required"></span>
+            <span class="info-enter"><input id="purpose" name="purpose" class="info-input" type="text" placeholder="请输入孩子参加活动的目的"></span>
         </div>
     </div>
     <div class="info-box">
         <div class="info-box-row">
             <span class="info-name">身体状况</span>
-            <span class="info-enter"><input id="health" name="health" class="info-input" type="text" placeholder="请输入孩子的身体状况" required="required"></span>
+            <span class="info-enter"><input id="health" name="health" class="info-input" type="text" placeholder="请输入孩子的身体状况"></span>
         </div>
         <div class="info-box-row">
             <span class="info-name">身高<span class="help-box">（米）</span></span>
-            <span class="info-enter"><input id="height" name="height" class="info-input" type="text" placeholder="请输入孩子身高" required="required"></span>
+            <span class="info-enter"><input id="height" name="height" class="info-input" type="text" placeholder="请输入孩子身高"></span>
         </div>
         <div class="info-box-row">
             <span class="info-name">体重<span class="help-box">（千克）</span></span>
-            <span class="info-enter"><input id="weight" name="weight" class="info-input" type="text" placeholder="请输入孩子体重" required="required"></span>
+            <span class="info-enter"><input id="weight" name="weight" class="info-input" type="text" placeholder="请输入孩子体重"></span>
         </div>
         <div class="info-box-row">
             <span class="info-name">视力</span>
-            <span class="info-enter"><input id="eye" name="vision" class="info-input" type="text" placeholder="请输入孩子的左右眼视力" required="required"></span>
+            <span class="info-enter"><input id="eye" name="vision" class="info-input" type="text" placeholder="请输入孩子的左右眼视力"></span>
         </div>
     </div>
     <div class="bottom-box"></div>
@@ -91,7 +92,7 @@
                     <a href="/Registration/update/basic"><input class="step-pre" type="button" value="上一步"></a>
                 </td>
                 <td class="step-td" align="center" valign="middle">
-                    <input class="step-next" type="submit" value="下一步">
+                    <input class="step-next" type="button" value="下一步" onclick="checkElementRequired();">
                 </td>
             </tr>
         </table>
