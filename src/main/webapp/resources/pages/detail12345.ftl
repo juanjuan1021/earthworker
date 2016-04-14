@@ -11,7 +11,7 @@
 <body>
 <div class="detail-box">
     <div>
-        <img class="detail-img" src="/images/detail-title.jpg">
+        <img class="detail-img" src="/images/12345.jpg">
     </div>
     <div class="title">2015行远帆船夏日营 <span class="title-tag">全程外教</span></div>
     <div class="title-money">￥2800 <span class="real-money">市场价 ￥4800</span></div>
@@ -121,7 +121,7 @@
         <div class="title-box">
             <table>
                 <tr>
-                    <td><img id="enter-img" src="/images/detail-title.jpg"></td>
+                    <td><img id="enter-img" src="/images/12345.jpg"></td>
                     <td id="title-td" class="title-des">
                         <div class="title-name">2016行远帆船夏令营</div>
                         <div class="title-price">￥2800</div>
@@ -138,7 +138,7 @@
                     <tr>
                         <td align="center" valign="middle"><div class="course-session" id="time1" onclick="selectTime(this)">2016/8/24-2016/8/28</div></td>
                         <td align="center" valign="middle"><div class="course-session" id="time2" onclick="selectTime(this)">2016/8/24-2016/8/28</div></td>
-                        <input id="dealSession" name="dealSession" style="display:none">
+                        <input id="dealSession" name="dealSession" type="hidden">
                     </tr>
                 </table>
             </div>
@@ -153,7 +153,7 @@
                         <td><!--<div id="city3" class="course-city" onclick="selectCity(this)">广州</div>--></td>
                         <td><!--<div id="city4" class="course-city" onclick="selectCity(this)">杭州</div>--></td>
                         <td><!--<div id="city5" class="course-city" onclick="selectCity(this)">其他</div>--></td>
-                        <input id="dealCity" name="dealCity" style="display:none">
+                        <input id="dealCity" name="dealCity" type="hidden">
                     </tr>
                 </table>
             </div>

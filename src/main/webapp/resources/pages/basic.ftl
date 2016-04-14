@@ -39,7 +39,7 @@
         </tr>
     </table>
 </div>
-<form action="/Registration/update/class">
+<form action="/Registration/update/class" method="post">
     <div class="info-box">
         <div class="info-box-row">
             <span class="info-name">孩子姓名</span>
@@ -86,7 +86,8 @@
                     <td><span class="info-name" style="width:100%;margin-left:10px">一寸免冠照片</span></td>
                     <td align="right">
                         <a href="javascript:;" class="file">上传照片<img src="../../images/icon_arrow.png" class="arrow">
-                            <input id="image" name="uploadImg" type="file" accept="image/*" onchange="loadImageFile();" required="required"/>
+                            <input id="image" type="file" accept="image/*" onchange="loadImageFile();" required="required"/>
+                            <input id="uploadImg" name="img" type="hidden"/>
                         </a>
                     </td>
                 </tr>

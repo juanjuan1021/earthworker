@@ -38,7 +38,7 @@
         </tr>
     </table>
 </div>
-<form action="/Registration/update/finish">
+<form action="/Registration/update/finish" method="post">
     <div class="info-box">
         <div class="info-box-row">
             <span class="info-name">第一联系人姓名</span>
@@ -90,6 +90,8 @@
             <span class="info-name">手机号码</span>
             <span class="info-enter"><input id="phone2" name="secondContactPhone" class="info-input" type="text" placeholder="输入联系方式" required="required"></span>
         </div>
+    </div>
+    <div class="info-box">
         <div class="info-box-row">
             <span class="info-name">通讯地址</span>
             <span class="info-enter"><input id="address" name="address" class="info-input" type="text" placeholder="请输入孩子的通讯地址" required="required"></span>
@@ -100,7 +102,7 @@
         <table style="width: 100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
                 <td class="step-td" align="center" valign="middle">
-                    <a href="/Registration/update/class"><input class="step-pre" id="pre" type="button" value="上一步"></a>
+                    <a href="/Registration/update/pre"><input class="step-pre" id="pre" type="button" value="上一步"></a>
                 </td>
                 <td class="step-td" align="center" valign="middle">
                     <input class="step-next" id="next" type="submit" value="完成">

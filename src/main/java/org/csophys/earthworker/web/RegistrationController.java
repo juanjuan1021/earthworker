@@ -36,7 +36,7 @@ public class RegistrationController {
         registration.setWeixinId(sessionRegistration.getWeixinId());
         String dealName = registration.getDealName();
         //TODO:价格通过有赞接口获取
-        String price = String.valueOf(registration.getTotalAmount() * 100);
+        String price = String.valueOf(registration.getUserAmount()* 100);
         CreateQrCodeResponse createQrCodeResponse = KdtApiClient.getCreateQrCodeResponse(dealName, price);
         registration.setPayId(createQrCodeResponse.getResponse().getQr_id());
         registration.setPayStatus(PayStatusEnum.WAIT_RECEIVED);
@@ -91,7 +91,7 @@ public class RegistrationController {
     }
 
     @RequestMapping("newRegistration/buy")
-    public String newRegistrationBuy(String dealId, String dealSession, String dealCity, @ModelAttribute("openId") String openId, ModelMap modelMap) {
+    public String newRegistrationBuy(String dealId,String dealSession, String dealCity, @ModelAttribute("openId") String openId, ModelMap modelMap) {
         Registration registration = new Registration();
         registration.setPayStatus(PayStatusEnum.INIT);
         registration.setWeixinId(openId);
@@ -107,26 +107,30 @@ public class RegistrationController {
     }
 
     @RequestMapping("update/basic")
-    public String updateRegistrationBasic(Registration registration/*,@ModelAttribute("registration") Registration sessionRegistration*/) {
-        //registrationService.updateById(sessionRegistration.getId(), registration);
+    public String updateRegistrationBasic(Registration registration) {
         return "basic" ;
     }
 
-    @RequestMapping("update/class")
-    public String updateRegistrationClass(Registration registration/*,@ModelAttribute("registration") Registration sessionRegistration*/) {
-        //registrationService.updateById(sessionRegistration.getId(), registration);
+    @RequestMapping(value = "/update/class", method = RequestMethod.POST)
+    public String updateRegistrationClass(Registration registration,@ModelAttribute("registration") Registration sessionRegistration) {
+        registrationService.updateById(sessionRegistration.getId(), registration);
         return "class" ;
     }
 
-    @RequestMapping("update/contact")
-    public String updateRegistrationContact(Registration registration/*,@ModelAttribute("registration") Registration sessionRegistration*/) {
-        //registrationService.updateById(sessionRegistration.getId(), registration);
+    @RequestMapping("update/pre")
+    public String updateRegistrationPre(Registration registration) {
+        return "class" ;
+    }
+
+    @RequestMapping(value = "/update/contact", method = RequestMethod.POST)
+    public String updateRegistrationContact(Registration registration,@ModelAttribute("registration") Registration sessionRegistration) {
+        registrationService.updateById(sessionRegistration.getId(), registration);
         return "contact" ;
     }
 
-    @RequestMapping("update/finish")
-    public String updateRegistrationFinish(Registration registration/*,@ModelAttribute("registration") Registration sessionRegistration*/) {
-        //registrationService.updateById(sessionRegistration.getId(), registration);
+    @RequestMapping(value ="/update/finish", method = RequestMethod.POST)
+    public String updateRegistrationFinish(Registration registration,@ModelAttribute("registration") Registration sessionRegistration) {
+        registrationService.updateById(sessionRegistration.getId(), registration);
         return "finish" ;
     }
 

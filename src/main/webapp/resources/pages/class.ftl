@@ -38,7 +38,7 @@
         </tr>
     </table>
 </div>
-<form action="/Registration/update/contact">
+<form action="/Registration/update/contact" method="post">
     <div class="info-box">
         <div class="info-box-row">
             <table style="width:100%" border="0" cellspacing="0" cellpadding="0">

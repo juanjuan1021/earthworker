@@ -13,12 +13,14 @@
     <div class="title-box">
         <table style="width:100%">
             <tr>
-                <td><img id="enter-img" src="/images/detail-title.jpg"></td>
+                <td><img id="enter-img" src="/images/12345.jpg"></td>
                 <td id="title-td" class="title-des">
                     <div class="title-name">2016行远帆船夏令营</div>
                     <div class="title-price">￥2800</div>
                     <div class="title-age">适合年龄：6-16周岁</div>
-                    <input type="hidden" name="totalAmount" id="totalAmount" value="0.01">
+                    <input type="hidden" name="dealName" id="dealName" value="2016行远帆船夏令营">
+                    <input type="hidden" name="totalAmount" id="totalAmount" value="2800">
+                    <input type="hidden" name="userAmount" id="userAmount" value="0.01">
                 </td>
             </tr>
         </table>

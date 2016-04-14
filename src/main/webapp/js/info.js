@@ -10,6 +10,7 @@ function loadImageFile() {
     oFReader = new FileReader();
     oFReader.onload = function (oFREvent) {
         document.getElementById("preview").src = oFREvent.target.result;
+        $("#uploadImg").val(oFREvent.target.result);
     };
     if (document.getElementById("image").files.length === 0) { return; }
     var oFile = document.getElementById("image").files[0];
