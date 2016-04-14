@@ -71,7 +71,7 @@ body{
     height: 40px;
     font-size:28px;
     width:100%;
-    color:#CCCCCC;
+    color:#1A1A1A;
     text-align: right;
     appearance:none;
     -moz-appearance:none; /* Firefox */
@@ -223,4 +223,7 @@ body{
     height:80px;
     display:inline-block;
 }
-
+::-webkit-input-placeholder { color:#CCCCCC; }
+::-moz-placeholder { color:#CCCCCC; } /* firefox 19+ */
+:-ms-input-placeholder { color:#CCCCCC; } /* ie */
+input:-moz-placeholder { color:#CCCCCC; }

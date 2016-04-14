@@ -20,11 +20,11 @@
     <div class="title-box">
         <table style="width:100%">
             <tr>
-                <td><img id="enter-img" src="/images/12345.jpg"></td>
+                <td><img id="enter-img" src="/images/${finalRegistration.dealId}.jpg"></td>
                 <td id="title-td" class="title-des">
-                    <div class="title-name">2016行远帆船夏令营</div>
-                    <div class="title-price">￥2800</div>
-                    <div class="title-age">适合年龄：6-16周岁</div>
+                    <div class="title-name">${finalRegistration.dealName}</div>
+                    <div class="title-age">时间：${finalRegistration.dealSession}</div>
+                    <div class="title-price">￥${finalRegistration.userAmount}</div>
                 </td>
             </tr>
         </table>
@@ -33,11 +33,11 @@
     <div class="children-info">
         <table style="width:100%">
             <tr>
-                <td class="photo-td"><img class="photo-img" src="/images/photo.jpg"></td>
+                <td class="photo-td"><img class="photo-img" src="${finalRegistration.img}"></td>
                 <td class="children-td">
-                    <div class="children-name">张筱雨（Daisy Zhang）</div>
-                    <div class="children-desc">女 13岁</div>
-                    <div class="children-desc">静安实验小学</div>
+                    <div class="children-name">${finalRegistration.childrenName}（${finalRegistration.englishName}）</div>
+                    <div class="children-desc">${finalRegistration.sex} ${finalRegistration.birthDay}</div>
+                    <div class="children-desc">${finalRegistration.currentSchool}</div>
                 </td>
             </tr>
         </table>

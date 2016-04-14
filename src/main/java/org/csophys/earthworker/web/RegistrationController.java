@@ -129,8 +129,10 @@ public class RegistrationController {
     }
 
     @RequestMapping(value ="/update/finish", method = RequestMethod.POST)
-    public String updateRegistrationFinish(Registration registration,@ModelAttribute("registration") Registration sessionRegistration) {
+    public String updateRegistrationFinish(Registration registration,@ModelAttribute("registration") Registration sessionRegistration, ModelMap modelMap) {
         registrationService.updateById(sessionRegistration.getId(), registration);
+        //Registration finalRegistration = registrationService.getById(sessionRegistration.getId());
+        modelMap.addAttribute("finalRegistration",registration);
         return "finish" ;
     }
 

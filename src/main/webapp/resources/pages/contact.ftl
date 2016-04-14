@@ -76,8 +76,8 @@
                     <td class="arrow-one"><span class="arrow-name">所属称谓</span></td>
                     <td class="arrow-two">
                         <select class="info-select" id="parent2" name="secondAppellation">
-                            <option value ="mama">母亲</option>
-                            <option value ="papa">父亲</option>
+                            <option value ="母亲">母亲</option>
+                            <option value ="父亲">父亲</option>
                         </select>
                     </td>
                     <td class="arrow-three" align="right">
