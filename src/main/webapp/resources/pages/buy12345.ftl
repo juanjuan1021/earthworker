@@ -18,6 +18,7 @@
                     <div class="title-name">2016行远帆船夏令营</div>
                     <div class="title-price">￥2800</div>
                     <div class="title-age">适合年龄：6-16周岁</div>
+                    <input type="hidden" name="totalAmount" id="totalAmount" value="0.01">
                 </td>
             </tr>
         </table>
