@@ -2,10 +2,23 @@
  * Created by Jessia on 2015/10/18.
  */
 $(document).ready(function(){
-    $(".list-img").each(function(index){
-        var imgName = index + 1;
-        $(this).attr("src","/images/list-"+imgName+".jpg");
-    });
+    var flag = $("#flag").text();
+    if(flag == "internal"){
+        $(".list-img").each(function(index){
+            var imgName = index + 1;
+            $(this).attr("src","/images/list/internal/internal-"+imgName+".jpg");
+        });
+    }else if(flag == "national"){
+        $(".list-img").each(function(index){
+            var imgName = index + 1;
+            $(this).attr("src","/images/list/national/national-"+imgName+".jpg");
+        });
+    }else{
+        $(".list-img").each(function(index){
+            var imgName = index + 1;
+            $(this).attr("src","/images/list-"+imgName+".jpg");
+        });
+    }
 
     $("#list-img").load(function(){
         var imgHeight = this.height;

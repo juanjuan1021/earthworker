@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.kdt.api.KdtApiClient;
 import com.kdt.dto.CreateQrCodeResponse;
+import com.kdt.dto.GoodsDetailResponse;
 import org.csophys.common.service.util.HttpUtil;
 import org.csophys.earthworker.web.entity.Registration;
 import org.csophys.earthworker.web.enums.PayStatusEnum;
@@ -34,10 +35,10 @@ public class RegistrationController {
     public String addRegistration(Registration registration, @ModelAttribute("registration") Registration sessionRegistration) {
         registration.setPayStatus(PayStatusEnum.INIT);
         registration.setWeixinId(sessionRegistration.getWeixinId());
-        String dealName = registration.getDealName();
-        //TODO:价格通过有赞接口获取
-        String price = String.valueOf(registration.getUserAmount()* 100);
-        CreateQrCodeResponse createQrCodeResponse = KdtApiClient.getCreateQrCodeResponse(dealName, price);
+        GoodsDetailResponse goodsDetailResponse = KdtApiClient.getGoodsDetailResponse(registration.getDealId());
+        Double price = Double.valueOf(goodsDetailResponse.getResponse().getItem().getPrice())* 100;
+        String title = goodsDetailResponse.getResponse().getItem().getTitle();
+        CreateQrCodeResponse createQrCodeResponse = KdtApiClient.getCreateQrCodeResponse(title, String.valueOf(price));
         registration.setPayId(createQrCodeResponse.getResponse().getQr_id());
         registration.setPayStatus(PayStatusEnum.WAIT_RECEIVED);
         registrationService.updateById(sessionRegistration.getId(), registration);
@@ -70,7 +71,7 @@ public class RegistrationController {
     }
 
     @RequestMapping("newRegistration/detail")
-    public String newRegistrationDetail(String code, ModelMap modelMap, String dealId) throws Exception {
+    public String newRegistrationDetail(String code, ModelMap modelMap, String dealId,String flag) throws Exception {
         //dealId对应不同的套餐
         if (StringUtils.isEmpty(dealId)) {
             //1.获取网页授权acess_token Info
@@ -83,56 +84,84 @@ public class RegistrationController {
                 openId = UUID.randomUUID().toString();
             }
             modelMap.addAttribute("openId", openId);
-            return "list";
+            if("internal".equals(flag)){
+                return "internalList";
+            }else if("national".equals(flag)){
+                return "nationalList";
+            }else{
+                return "list";
+            }
         } else {
-            return "detail" + dealId;
+            if("internal".equals(flag)){
+                return "internal/detail" + dealId;
+            }else if("national".equals(flag)){
+                return "national/detail" + dealId;
+            }else{
+                return "detail" + dealId;
+            }
         }
 
     }
 
     @RequestMapping("newRegistration/buy")
-    public String newRegistrationBuy(String dealId,String dealSession, String dealCity, @ModelAttribute("openId") String openId, ModelMap modelMap) {
-        Registration registration = new Registration();
-        registration.setPayStatus(PayStatusEnum.INIT);
-        registration.setWeixinId(openId);
-        registration.setDealId(dealId);
-        registration.setDealCity(dealCity);
-        registration.setDealSession(dealSession);
-        System.out.println("openId:" + openId);
-        int result = registrationService.insert(registration);
-        registration.setId(result);
-        modelMap.addAttribute("registration", registration);
-        return "buy" + dealId;
-
+    public String newRegistrationBuy(String dealId,String dealSession, String dealCity,String flag, @ModelAttribute("openId") String openId, ModelMap modelMap) {
+        int stockFlag = 1;
+        GoodsDetailResponse goodsDetailResponse = KdtApiClient.getGoodsDetailResponse(dealId);
+        String num = goodsDetailResponse.getResponse().getItem().getNum();
+        if(Integer.valueOf(num) == 0){ //库存不足
+            stockFlag = 0;
+        }else{
+            Registration registration = new Registration();
+            registration.setPayStatus(PayStatusEnum.INIT);
+            registration.setWeixinId(openId);
+            registration.setDealId(dealId);
+            registration.setDealCity(dealCity);
+            registration.setDealSession(dealSession);
+            int result = registrationService.insert(registration);
+            registration.setId(result);
+            modelMap.addAttribute("registration", registration);
+        }
+        modelMap.addAttribute("stockFlag", stockFlag);
+        if("internal".equals(flag)){
+            return "internal/buy" + dealId;
+        }else if("national".equals(flag)){
+            return "national/buy" + dealId;
+        }else{
+            return "buy" + dealId;
+        }
     }
 
     @RequestMapping("update/basic")
-    public String updateRegistrationBasic(Registration registration) {
+    public String updateRegistrationBasic(Registration registration, ModelMap modelMap){
+        modelMap.addAttribute("registration",registration);
         return "basic" ;
     }
 
     @RequestMapping(value = "/update/class", method = RequestMethod.POST)
-    public String updateRegistrationClass(Registration registration,@ModelAttribute("registration") Registration sessionRegistration) {
+    public String updateRegistrationClass(Registration registration,@ModelAttribute("registration") Registration sessionRegistration, ModelMap modelMap) {
         registrationService.updateById(sessionRegistration.getId(), registration);
+        modelMap.addAttribute("registration",registration);
         return "class" ;
     }
 
     @RequestMapping("update/pre")
-    public String updateRegistrationPre(Registration registration) {
+    public String updateRegistrationPre(Registration registration, ModelMap modelMap) {
+        modelMap.addAttribute("registration",registration);
         return "class" ;
     }
 
     @RequestMapping(value = "/update/contact", method = RequestMethod.POST)
-    public String updateRegistrationContact(Registration registration,@ModelAttribute("registration") Registration sessionRegistration) {
+    public String updateRegistrationContact(Registration registration,@ModelAttribute("registration") Registration sessionRegistration, ModelMap modelMap) {
         registrationService.updateById(sessionRegistration.getId(), registration);
+        modelMap.addAttribute("registration",registration);
         return "contact" ;
     }
 
     @RequestMapping(value ="/update/finish", method = RequestMethod.POST)
     public String updateRegistrationFinish(Registration registration,@ModelAttribute("registration") Registration sessionRegistration, ModelMap modelMap) {
         registrationService.updateById(sessionRegistration.getId(), registration);
-        //Registration finalRegistration = registrationService.getById(sessionRegistration.getId());
-        modelMap.addAttribute("finalRegistration",registration);
+        Registration finalRegistration = registrationService.getById(sessionRegistration.getId());
+        modelMap.addAttribute("finalRegistration",finalRegistration);
         return "finish" ;
     }
 

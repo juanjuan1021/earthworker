@@ -3,7 +3,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=0.5, user-scalable=no" />
-    <title></title>
+    <title>地球小行者</title>
     <script src="/js/jquery-2.1.1.min.js" type="text/javascript"></script>
     <script src="/js/detail.js" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="/css/detail.css">
@@ -110,7 +110,7 @@
                 </a>
             </td>
             <td class="consult-button">
-                <input class="apply-button" id="apply" type="button" value="报名课程">
+                <input class="apply-button" id="apply" type="button" value="我要报名">
             </td>
         </tr>
     </table>
@@ -160,7 +160,7 @@
         </div>
         <div class="line"></div>
         <div class="course-button">
-            <input class="apply-button" type="submit" value="购买报名">
+            <input id="confirm-button"  class="apply-button" type="button" value="确认报名">
         </div>
     </div>
 </form>

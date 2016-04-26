@@ -2,6 +2,7 @@ package com.kdt.api;
 
 import com.google.gson.Gson;
 import com.kdt.dto.CreateQrCodeResponse;
+import com.kdt.dto.GoodsDetailResponse;
 import com.kdt.dto.PayOrderResponse;
 import org.csophys.common.service.util.HttpUtil;
 
@@ -21,8 +22,8 @@ public class KdtApiClient {
 
     private static final String DefaultUserAgent = "KdtApiSdk Client v0.1";
 
-    private static String appId = "32fb25eda87fedcded";
-    private static String appSecret = "e6c1a1373d28b4e17686d18ffd1851de";
+    private static String appId = "0a01032f8ee0a73488";
+    private static String appSecret = "9d775a8d0722700eff41f02963142af2";
 
     public static String get(String method, HashMap<String, String> parames) throws Exception {
         String url = apiEntry + getParamStr(method, parames);
@@ -125,6 +126,22 @@ public class KdtApiClient {
 
         PayOrderResponse payOrderResponse = new Gson().fromJson(response, PayOrderResponse.class);
         return payOrderResponse;
+    }
+
+    public static GoodsDetailResponse getGoodsDetailResponse(String alias) {
+        //获取有赞商品信息
+        String method = "kdt.item.get";
+        HashMap<String, String> params = new HashMap<String, String>();
+        params.put("alias", alias);
+        params.put("fields", "alias,title,num,sold_num,price");
+        String response = null;
+        try {
+            response = KdtApiClient.get(method, params);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return new Gson().fromJson(response, GoodsDetailResponse.class);
     }
 
     public static void main(String[] args) {

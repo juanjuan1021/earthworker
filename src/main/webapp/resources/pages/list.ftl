@@ -3,7 +3,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=0.5, user-scalable=no" />
-    <title></title>
+    <title>地球小行者</title>
     <script src="/js/jquery-2.1.1.min.js" type="text/javascript"></script>
     <script src="/js/list.js" type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" href="/css/list.css">

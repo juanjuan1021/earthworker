@@ -21,7 +21,7 @@
         currentSchool,
         winterOrSummer,
         englishName,
-        iDNumber,
+        idNumber,
         birthDay,
         sex,
         nation,
@@ -56,7 +56,7 @@
         #{currentSchool},
         #{winterOrSummer},
         #{englishName},
-        #{iDNumber},
+        #{idNumber},
         #{birthDay},
         #{sex},
         #{nation},
@@ -123,8 +123,8 @@
         <if test=" entity.englishName != null">
         englishName = #{entity.englishName},
         </if>
-        <if test=" entity.iDNumber != null">
-        iDNumber = #{entity.iDNumber},
+        <if test=" entity.idNumber != null">
+        idNumber = #{entity.idNumber},
         </if>
         <if test=" entity.birthDay != null">
         birthDay = #{entity.birthDay},

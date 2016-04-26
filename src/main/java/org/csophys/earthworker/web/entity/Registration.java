@@ -14,8 +14,8 @@ import java.util.Date;
 public class Registration extends Entity {
     private String weixinId;
     private String payId;
-    private Double totalAmount;
-    private Double userAmount;
+    private String totalAmount;
+    private String userAmount;
     private String dealId;
     private String dealName;
     private String dealSession;
@@ -24,7 +24,7 @@ public class Registration extends Entity {
     private String currentSchool;
     private String winterOrSummer;
     private String englishName;
-    private String iDNumber;
+    private String idNumber;
     private String birthDay;
     private String sex;
     private String nation;

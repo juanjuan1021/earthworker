@@ -55,7 +55,7 @@ public class PayStatusCheckTask {
     }
 
     private String buildBody(PayOrderResponse.PayOrderGroup.PayOrder payOrder, String openId) {
-        String json = "{\"touser\":\"" + openId + "\",\"msgtype\":\"text\",\"text\":{\"content\":\"亲，你已支付成功。请在我的报名中完善报名信息哦~.\"}}";
+        String json = "{\"touser\":\"" + openId + "\",\"msgtype\":\"text\",\"text\":{\"content\":\"亲爱的家长，地球小行者已经收到了您支付的活动费用，请您及时通过“我的”—“报名表”完善报名信息。我们的客服人员也会在24小时内与您联系，希望我们的服务，能让各位宝贝尽情享受真正属于自己的精彩之旅！\"}}";
         System.out.println(json);
         return json;
     }

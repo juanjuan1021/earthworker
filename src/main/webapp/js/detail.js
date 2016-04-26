@@ -26,6 +26,10 @@ function selectTime(obj){
     $("#"+obj.id+"").css("border-color","#3E89D2");
     var dealSession = $("#"+obj.id+"").text();
     $("#dealSession").attr("value",dealSession);
+    var dealCity = $("#dealCity").val();
+    if(dealCity != ""){
+        $("#confirm-button").attr("type","submit");
+    }
 }
 function selectCity(obj){
     $(".course-city").each(function(){
@@ -36,4 +40,8 @@ function selectCity(obj){
     $("#"+obj.id+"").css("border-color","#3E89D2");
     var dealCity = $("#"+obj.id+"").text();
     $("#dealCity").attr("value",dealCity);
+    var dealSession = $("#dealSession").val();
+    if(dealSession != ""){
+        $("#confirm-button").attr("type","submit");
+    }
 }
